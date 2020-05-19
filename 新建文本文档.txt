@@ -1,0 +1,153 @@
+存储过程
+概述：一组为了完成某一个特定功能的sql的集合。
+目的：将常用或复杂的工作预先用sql提前写好并指定一个名字存储起来。
+原理：过程中，经过编译和优化后存储到数据库服务器中，以后需要数据库服务器提供预先存储好的存储过程时
+          通过    call 存储过程名    调用。
+
+好处：减少网络流量，存储过程在数据库服务器里运行且运行速度快，客户计算机调用存储过程时发送的是调用语句，降低网络负载。
+           高性能，存储过程执行过一次后会生成二进制文件放到缓冲区中，以后的调用只需要执行缓冲区的二进制代码即可，从而提高执行效率与性能。
+
+
+GsonBuilder gb = new GsonBuilder();
+gb.setDateFormat("yyyy/MM/dd");
+Gson gson = gb.create();
+
+gsonn.toJson(user);
+
+$.ajax({
+type:'GET',
+url:'/servlet/aaa',
+data:{'name':'admin','password':'123456'},
+dataType:'json',
+success:function(data){
+
+},
+error:function(){
+
+}
+})
+
+
+
+
+var xhr;
+
+if(window.activeXObject()){
+  xhr = new activeXObject("Microsoft.xmlhttp");
+}else{
+  xhr = new XMLHttpRequest();
+}
+
+xhr.open('POST'，url);
+xhr.send();
+xhr.onreadystatechange=function(){
+  if(xhr.readyState==4&&xhr.states==200){
+    
+  }
+};
+
+
+
+$.ajax({
+  type:'POST',
+  url:'',
+  data:{'name':'张三','password':'123456'},
+  dataType:'json',
+  success:function(data){
+  
+  },
+  error:function(){
+
+  }
+});
+
+$.post(url,data,function(data){},'json');
+$.get(url,data,function(data){},'json');
+
+
+
+
+
+静态代理：原始类与代理类共同实现同一个接口，缺点是原始类越多代理类就会越多，而且代理类中的额外功能代码冗余。
+动态代理：编写原始类，编写额外功能（通知：前置通知，后置通知，环绕通知，异常通知），定义切入点，编织
+AOP本质上是基于spring的动态代理实现的，spring底层的动态代理技术有jdk代理与cglib代理。
+
+传播：
+必须有事务（外有则加入，外无则新建）  
+支持（外有则加入，外无不新建）  
+有没有都新建（外有则新建，外无也新建）
+不支持（外有不加入，外无不新建） 
+不能有 绝对不能在有事务的环境下运行，否则异常
+不能无 绝对要在有事务的环境下运行，否则异常
+隔离：
+读未提交  读提交  可重复读  串行读
+只读：
+true/false
+回滚：
+spring默认运行时异常回滚，非运行时异常提交
+超时：
+timeout=“-1”时默认根据数据库自己的超时策略
+
+
+
+
+//饿汉
+public class Sington{
+  private final static Sington s = new Sington();
+  private Sington(){}
+  public static Sington getSington(){
+    return s;
+  }
+}
+//懒汉
+public class Sington{
+  private static Sington s;
+  private Sington(){}
+  public synchronized static Sington getSington(){
+    if(s==null){
+      s = new Sington();
+    }
+      return s;
+  }
+}
+
+//静态内部类
+public class Sington{
+  static class inner{
+    private final static Sington s = new Sington();
+  }
+  private Sington(){}
+  public static Sington getSington(){
+    return inner.s;
+  }
+}
+
+
+
+List<Student> queryStudentInfo();
+
+
+<mapper namespace="StudentDao">
+
+<resultMap id="stuMap" type="Student">
+       <id property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <result property="classid" column="sclassid"/>
+       <assocation property="calzz" ofType="class">
+	 <id property="id" column="cid"/>
+                 <result property="Num" column="cNum"/>
+       </assocation>
+</resultMap>
+<select id="queryStudentInfo" resultMap="stuMap">
+select s.id sid,s.name sname,s.classid sclassid,c.id cid,c.Num cNum from
+	student  s left join class c on s.clazzid = c.id 
+</select>
+</mapper>
+
+
+
+
+
+
+
+
